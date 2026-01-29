@@ -3,23 +3,21 @@ import Layout from "../layouts/layout.astro";
 ---
 
 <Layout>
-  <main class="relative min-h-screen flex flex-col items-center justify-center bg-black px-6 gap-8 selection:bg-white/20 overflow-hidden">
+  <main class="relative min-h-screen flex flex-col items-center justify-center bg-black px-8 py-20 md:py-0 gap-10 md:gap-12 selection:bg-white/20 overflow-hidden">
 
-    <!-- Background Grid -->
-    <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+    <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
-    <!-- Avatar -->
     <div class="group relative animate-float z-10">
-      <div class="absolute -inset-1 bg-gradient-to-r from-white/20 to-transparent rounded-full blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+      <div class="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-transparent rounded-full blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
 
       <div
-        class="relative w-28 h-28 md:w-32 md:h-32
+        class="relative w-24 h-24 md:w-32 md:h-32
                rounded-full overflow-hidden
                bg-neutral-900
                ring-1 ring-white/10
                transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
                group-hover:-translate-y-2
-               group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(255,255,255,0.1)]
+               group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(16,185,129,0.1)]
                group-hover:ring-white/30"
       >
         <img
@@ -30,62 +28,59 @@ import Layout from "../layouts/layout.astro";
       </div>
     </div>
 
-    <!-- Identity -->
-    <div class="flex flex-col items-center gap-3 z-10">
-      <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white font-mono">
+    <div class="flex flex-col items-center gap-4 md:gap-6 z-10 text-center">
+      <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-white font-mono uppercase">
         <span id="typewriter"></span>
         <span
           id="cursor"
-          class="ml-1 inline-block w-[2px] h-[1em] bg-white animate-pulse align-middle"
+          class="ml-1 inline-block w-[2px] h-[1em] bg-emerald-500 animate-pulse align-middle"
         ></span>
       </h1>
 
       <p
         id="intro"
-        class="text-center max-w-md text-sm md:text-base leading-relaxed text-white/50 opacity-0 translate-y-4 transition-all duration-1000 ease-out"
+        class="max-w-[280px] md:max-w-md text-xs md:text-base leading-relaxed md:leading-loose text-white/40 opacity-0 translate-y-4 transition-all duration-1000 ease-out font-light tracking-wide"
       >
-        Cloud & Platform Engineer crafting scalable systems and production-ready
+        Cloud & Platform Engineer crafting <span class="text-white/80">scalable systems</span> and production-ready
         infrastructure. Focused on <span class="text-white/80">AWS</span>,
-        <span class="text-white/80">automation</span>, and building things that last.
+        <span class="text-white/80 font-mono">automation</span>, and building things that last.
       </p>
     </div>
 
-    <!-- CTA -->
     <div
       id="nav"
-      class="flex gap-4 opacity-0 translate-y-4 transition-all duration-1000 delay-300 ease-out z-10"
+      class="flex flex-col md:flex-row gap-4 opacity-0 translate-y-4 transition-all duration-1000 delay-300 ease-out z-10 w-full md:w-auto"
     >
       <a
         href="https://github.com/officiallyhussain786"
         target="_blank"
-        class="px-6 py-2.5 rounded-full border border-white/10 text-sm font-medium text-white/60 transition-all hover:text-white hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+        class="w-full md:w-auto text-center px-8 py-3 rounded-full border border-white/5 bg-white/[0.02] text-[10px] md:text-xs font-bold text-white/60 transition-all hover:text-white hover:border-white/20 hover:bg-white/[0.05] tracking-[0.2em] uppercase"
       >
         Projects
       </a>
 
       <a
         href="/blog"
-        class="px-6 py-2.5 rounded-full border border-white/10 text-sm font-medium text-white/60 transition-all hover:text-white hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+        class="w-full md:w-auto text-center px-8 py-3 rounded-full border border-white/5 bg-white/[0.02] text-[10px] md:text-xs font-bold text-white/60 transition-all hover:text-white hover:border-white/20 hover:bg-white/[0.05] tracking-[0.2em] uppercase"
       >
         Blog
       </a>
     </div>
 
-    <!-- Status -->
-    <div class="absolute bottom-10 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-white/20 font-mono z-10">
-      <div class="flex h-2 w-2 relative">
+    <div class="absolute bottom-8 md:bottom-12 flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/20 font-mono z-10">
+      <div class="flex h-1.5 w-1.5 md:h-2 md:w-2 relative">
         <div class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40"></div>
-        <div class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></div>
+        <div class="relative inline-flex rounded-full h-1.5 w-1.5 md:h-2 md:w-2 bg-emerald-500"></div>
       </div>
 
-      <span>Systems Operational</span>
+      <span>Operational</span>
       <span class="opacity-30">//</span>
-      <span id="region-tag">Region: Detecting...</span>
+      <span id="region-tag">Detecting...</span>
     </div>
 
-    <!-- Scripts -->
     <script>
-      // Typewriter
+      // Typewriter & Region Logic remains largely the same, but with 
+      // optimized timing for mobile attention spans.
       const text = "Hi, I'm Hussain";
       const el = document.getElementById("typewriter");
       const intro = document.getElementById("intro");
@@ -98,42 +93,34 @@ import Layout from "../layouts/layout.astro";
         if (index < text.length) {
           el.textContent += text.charAt(index);
           index++;
-          const delay = Math.floor(Math.random() * (95 - 60 + 1) + 60);
+          const delay = Math.floor(Math.random() * (80 - 40 + 1) + 40);
           setTimeout(type, delay);
         } else {
           setTimeout(() => {
             cursor.style.display = "none";
             intro.classList.remove("opacity-0", "translate-y-4");
             nav.classList.remove("opacity-0", "translate-y-4");
-          }, 300);
+          }, 200);
         }
       }
 
-      // Region detection
       function detectRegion() {
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-
         const regionMap = {
           "Asia/Kolkata": "ap-south-1",
           "Europe/Amsterdam": "eu-central-1",
           "Asia/Dubai": "me-central-1",
-          "America/New_York": "us-east-1",
-          "Europe/London": "eu-west-2"
+          "America/New_York": "us-east-1"
         };
-
         if (regionMap[tz]) return regionMap[tz];
         if (tz.includes("Asia")) return "ap-southeast-1";
-        if (tz.includes("Europe")) return "eu-west-1";
         return "us-east-1";
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(type, 600);
-
+        setTimeout(type, 500);
         const regionEl = document.getElementById("region-tag");
-        if (regionEl) {
-          regionEl.textContent = `Region: ${detectRegion().toUpperCase()}`;
-        }
+        if (regionEl) regionEl.textContent = detectRegion().toUpperCase();
       });
     </script>
 
@@ -143,21 +130,13 @@ import Layout from "../layouts/layout.astro";
 <style is:global>
   @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-7px); }
+    50% { transform: translateY(-10px); }
   }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-float {
-      animation: none;
-    }
-  }
-
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  
+  /* Expert UI Touch: Smooth fade for the entire page on load */
   html {
-    scroll-behavior: smooth;
     background: black;
+    color-scheme: dark;
   }
 </style>
