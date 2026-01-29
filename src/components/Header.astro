@@ -1,0 +1,77 @@
+---
+// Header.astro
+---
+<header class="fixed top-0 left-0 w-full z-[100] h-14 md:h-16 border-b border-white/5 bg-black/60 backdrop-blur-xl transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+    <a href="/" class="group flex items-center gap-2 font-mono text-sm tracking-tighter z-[110]">
+      <span class="text-white/40 group-hover:text-white transition-colors duration-500">Hussain.</span>
+      <span class="text-emerald-500 animate-pulse">_</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-9">
+      <a href="mailto:officiallyhussain786@gmail.com" class="relative group text-[10px] font-bold text-white/40 hover:text-white transition-all uppercase tracking-[0.2em]">
+        Email
+        <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/hussain214" target="_blank" rel="noopener noreferrer" class="relative group text-[10px] font-bold text-white/40 hover:text-white transition-all uppercase tracking-[0.2em]">
+        LinkedIn
+        <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="/resume-hussain.pdf" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 px-5 py-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em] transition-all hover:bg-emerald-500/10 hover:border-emerald-500/40 hover:-translate-y-0.5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-y-0.5 transition-transform"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        Resume
+      </a>
+    </nav>
+
+    <button id="menu-toggle" aria-label="Toggle menu" class="relative md:hidden flex flex-col items-end gap-1.5 p-2 z-[110] outline-none group">
+      <span id="line1" class="w-6 h-[1px] bg-white transition-all duration-500 ease-in-out"></span>
+      <span id="line2" class="w-4 h-[1px] bg-white transition-all duration-500 ease-in-out group-hover:w-6"></span>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="fixed inset-0 z-[90] flex flex-col items-center justify-center bg-black/95 backdrop-blur-2xl opacity-0 pointer-events-none transition-all duration-500">
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+  <nav class="relative z-10 flex flex-col items-center gap-10">
+    <a href="mailto:officiallyhussain786@gmail.com" class="mobile-link opacity-0 translate-y-8 text-sm font-mono tracking-[0.4em] text-white/40 hover:text-white transition-all duration-500">EMAIL</a>
+    <a href="https://www.linkedin.com/in/hussain214" target="_blank" rel="noopener noreferrer" class="mobile-link opacity-0 translate-y-8 text-sm font-mono tracking-[0.4em] text-white/40 hover:text-white transition-all duration-500">LINKEDIN</a>
+    <div class="w-12 h-[1px] bg-white/10 my-2 mobile-link opacity-0 translate-y-8 transition-all duration-500 delay-150"></div>
+    <a href="/resume-hussain.pdf" target="_blank" rel="noopener noreferrer" class="mobile-link opacity-0 translate-y-8 group flex items-center justify-center px-12 py-4 rounded-full border border-emerald-500/20 text-xs font-mono tracking-[0.4em] text-emerald-500 transition-all duration-700 hover:bg-emerald-500/5 hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]">RESUME</a>
+  </nav>
+</div>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const lines = [document.getElementById("line1"), document.getElementById("line2")];
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    menu.classList.toggle("opacity-0");
+    menu.classList.toggle("pointer-events-none");
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    if (isMenuOpen) {
+      lines[0].style.transform = "rotate(45deg) translateY(5px)";
+      lines[1].style.width = "24px";
+      lines[1].style.transform = "rotate(-45deg) translateY(-5px)";
+      mobileLinks.forEach((link, i) => {
+        setTimeout(() => {
+          link.classList.remove("opacity-0", "translate-y-8");
+          link.classList.add("opacity-100", "translate-y-0");
+        }, 150 + i * 100);
+      });
+    } else {
+      lines[0].style.transform = "none";
+      lines[1].style.width = "16px";
+      lines[1].style.transform = "none";
+      mobileLinks.forEach(link => {
+        link.classList.add("opacity-0", "translate-y-8");
+        link.classList.remove("opacity-100", "translate-y-0");
+      });
+    }
+  }
+  toggle?.addEventListener("click", toggleMenu);
+  window.addEventListener("keydown", (e) => { if (e.key === "Escape" && isMenuOpen) toggleMenu(); });
+</script>
