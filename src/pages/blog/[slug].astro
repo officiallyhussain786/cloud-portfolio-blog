@@ -2,10 +2,10 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/layout.astro";
 import Header from "../../components/Header.astro";
+import Cusdis from "../../components/Cusdis.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
-
   return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -14,57 +14,50 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// Build canonical URL for comments + SEO
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <Layout title={entry.data.title}>
   <Header />
 
   <main class="relative min-h-screen bg-black pt-32 pb-24 px-6">
-
-    <div class="absolute inset-0 z-0
-      bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),
-          linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)]
-      bg-[size:40px_40px]
-      [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]">
-    </div>
+    <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
     <article class="max-w-2xl mx-auto relative z-10">
-
       <header class="mb-14">
-
-        <div class="flex items-center gap-3
-          text-[10px] font-mono tracking-[0.3em]
-          text-emerald-500 uppercase mb-4">
-
+        <div class="flex items-center gap-3 text-[10px] font-mono tracking-[0.3em] text-emerald-500 uppercase mb-4">
           <span>{entry.data.category}</span>
           <span class="text-white/10">//</span>
           <span class="text-white/30">
             {entry.data.pubDate.toDateString()}
           </span>
-
         </div>
 
-        <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight">
+        <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
           {entry.data.title}
         </h1>
 
+        <p class="text-white/40 italic text-sm md:text-base border-l-2 border-emerald-500/30 pl-4">
+          {entry.data.description}
+        </p>
       </header>
 
-      <div class="prose prose-invert prose-emerald max-w-none
-        prose-headings:font-mono
-        prose-headings:uppercase
-        prose-headings:tracking-tight
-        prose-p:text-white/60
-        prose-p:leading-relaxed
-        prose-code:text-emerald-300
-        prose-code:bg-emerald-500/10
-        prose-code:px-1
-        prose-code:rounded">
-
+      <div
+        class="prose prose-invert prose-emerald max-w-none
+               prose-p:text-white/60 prose-p:leading-relaxed
+               prose-code:text-emerald-300 prose-code:bg-emerald-500/10
+               prose-code:px-1 prose-code:rounded"
+      >
         <Content />
-
       </div>
 
+      <Cusdis
+        pageId={entry.slug}
+        pageTitle={entry.data.title}
+        pageUrl={pageUrl}
+      />
     </article>
   </main>
 </Layout>

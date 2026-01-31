@@ -1,0 +1,31 @@
+---
+const { pageId, pageTitle, pageUrl } = Astro.props;
+---
+
+<div class="mt-16 border-t border-white/5 pt-10 relative z-10 max-w-xl mx-auto">
+  <h3 class="text-sm font-bold text-white/80 mb-6 font-mono uppercase tracking-[0.2em]">
+    Discussion<span class="text-emerald-500/50">_</span>
+  </h3>
+
+  <div 
+    id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="c1a3f043-bcf1-42f2-8a06-a274182d569c"
+    data-page-id={pageId}
+    data-page-url={pageUrl}
+    data-page-title={pageTitle}
+    data-theme="dark"
+  ></div>
+</div>
+
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+<style is:global>
+  #cusdis_thread iframe {
+    color-scheme: dark !important;
+    width: 100% !important;
+    min-height: 150px; 
+    border: none !important;
+    background: transparent !important;
+  }
+</style>
