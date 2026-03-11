@@ -1,8 +1,9 @@
-
+---
 title: "Go Concurrency Patterns — Pipeline, Fan Out, Fan In Explained"
 description: "Learn how Go's Pipeline, Fan Out, and Fan In concurrency patterns solve the async problems that break Python at scale — with real code from a production document ingestion pipeline."
 pubDate: 2026-03-11
 category: "Systems"
+---
 I spent two years writing Python backends. Threading confused me. AsyncIO infected my entire codebase. And when I finally pushed real load — 1000+ documents through a GenAI ingestion pipeline — everything collapsed.
 Then I found Go.
 Not because Go is faster. Because Go makes concurrency simple to reason about. No async/await chains. No GIL. No infection spreading through your codebase. Just goroutines, channels, and a handful of patterns that compose cleanly together.
